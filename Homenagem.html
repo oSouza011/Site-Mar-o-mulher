@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Março Feminino</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<style>
+:root {
+    --primary: #bb0c78;
+    --accent: #fd79a8;
+    --youtube: #FF0000;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #8e44ad, #fd79a8, #ff758c, #6c5ce7);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.floating {
+    position: absolute;
+    font-size: 22px;
+    animation: floatUp linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh) rotate(0deg); }
+    to { transform: translateY(-10vh) rotate(360deg); }
+}
+
+.card {
+    width: 400px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    overflow: hidden;
+    animation: fadeIn 1.5s ease;
+    z-index: 10;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header-img {
+    height: 120px;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.content {
+    padding: 25px;
+    text-align: center;
+}
+
+.quote-box {
+    font-style: italic;
+    margin: 20px 0;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+button {
+    border: none;
+    padding: 14px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-celebrate {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-music {
+    background: var(--youtube);
+    color: white;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px red; }
+    to { box-shadow: 0 0 25px red; }
+}
+
+.music-player {
+    margin-top: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+</style>
+</head>
+
+<body>
+
+<div id="effects"></div>
+
+<main class="card">
+<header class="header-img">
+<h2>Março Feminino 🖤</h2>
+</header>
+
+<section class="content">
+<p style="color:#666;font-size:0.9rem;">
+Homenagem à força de todas as mulheres.
+</p>
+
+<div class="quote-box">
+"Hoje celebramos não apenas mulheres, mas histórias de força, superação e amor."
+</div>
+
+<div class="btn-group">
+<button class="btn-celebrate" id="btnCelebrate">
+Comemorar! 🎉
+</button>
+
+<button class="btn-music" id="btnPlayMusic">
+Abrir no YouTube ▶
+</button>
+</div>
+
+<div class="music-player">
+<iframe 
+    width="100%" 
+    height="220" 
+    src="https://www.youtube.com/embed/yg-OBK5Aj5w?autoplay=1"
+    frameborder="0" 
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+</iframe>
+</div>
+
+</section>
+</main>
+
+<script>
+const btn = document.getElementById('btnCelebrate');
+const btnMusic = document.getElementById('btnPlayMusic');
+
+btn.addEventListener('click', () => {
+    if (window.confetti) {
+        confetti({
+            particleCount: 250,
+            spread: 120,
+            origin: { y: 0.6 },
+            zIndex: 9999
+        });
+    }
+});
+
+btnMusic.addEventListener('click', () => {
+    window.open("https://www.youtube.com/watch?v=yg-OBK5Aj5w", "_blank");
+});
+
+const effects = document.getElementById("effects");
+const icons = ["🌸","💖","✨","👑","🌷"];
+
+function createFloating() {
+    const el = document.createElement("div");
+    el.className = "floating";
+    el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.animationDuration = (5 + Math.random() * 5) + "s";
+    el.style.fontSize = (18 + Math.random() * 20) + "px";
+    effects.appendChild(el);
+
+    setTimeout(() => {
+        el.remove();
+    }, 10000);
+}
+
+setInterval(createFloating, 500);
+</script>
+
+</body>
+
+</html>
