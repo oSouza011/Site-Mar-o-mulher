@@ -1,205 +1,217 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Março Feminino</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Março Feminino</title>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <!-- Script do Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-<style>
-:root {
-    --primary: #bb0c78;
-    --accent: #fd79a8;
-    --youtube: #FF0000;
-}
+    <style>
+        :root {
+            --primary: #bb0c78;
+            --accent: #fd79a8;
+            --youtube: #FF0000;
+        }
 
-body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
-    background: linear-gradient(-45deg, #8e44ad, #fd79a8, #ff758c, #6c5ce7);
-    background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
-}
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #8e44ad, #fd79a8, #ff758c, #6c5ce7);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+        }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-.floating {
-    position: absolute;
-    font-size: 22px;
-    animation: floatUp linear infinite;
-    opacity: 0.7;
-}
+        .floating {
+            position: absolute;
+            font-size: 22px;
+            animation: floatUp linear infinite;
+            opacity: 0.7;
+            user-select: none;
+            pointer-events: none;
+        }
 
-@keyframes floatUp {
-    from { transform: translateY(100vh) rotate(0deg); }
-    to { transform: translateY(-10vh) rotate(360deg); }
-}
+        @keyframes floatUp {
+            from { transform: translateY(110vh) rotate(0deg); }
+            to { transform: translateY(-20vh) rotate(360deg); }
+        }
 
-.card {
-    width: 400px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    overflow: hidden;
-    animation: fadeIn 1.5s ease;
-    z-index: 10;
-}
+        .card {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: fadeIn 1.5s ease;
+            z-index: 10;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.header-img {
-    height: 120px;
-    background: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
+        .header-img {
+            height: 100px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
 
-.content {
-    padding: 25px;
-    text-align: center;
-}
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
 
-.quote-box {
-    font-style: italic;
-    margin: 20px 0;
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 15px;
-}
+        .quote-box {
+            font-style: italic;
+            margin: 15px 0;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 15px;
+            color: #444;
+            line-height: 1.4;
+        }
 
-.btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
 
-button {
-    border: none;
-    padding: 14px;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        button {
+            border: none;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-.btn-celebrate {
-    background: var(--accent);
-    color: white;
-}
+        button:active {
+            transform: scale(0.95);
+        }
 
-.btn-music {
-    background: var(--youtube);
-    color: white;
-    animation: glow 1.5s infinite alternate;
-}
+        .btn-celebrate {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 15px rgba(253, 121, 168, 0.4);
+        }
 
-@keyframes glow {
-    from { box-shadow: 0 0 10px red; }
-    to { box-shadow: 0 0 25px red; }
-}
+        .btn-music {
+            background: var(--youtube);
+            color: white;
+            animation: glow 1.5s infinite alternate;
+        }
 
-.music-player {
-    margin-top: 20px;
-    border-radius: 15px;
-    overflow: hidden;
-}
-</style>
+        @keyframes glow {
+            from { box-shadow: 0 0 5px red; }
+            to { box-shadow: 0 0 15px red; }
+        }
+
+        .music-player {
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            line-height: 0;
+        }
+    </style>
 </head>
-
 <body>
 
 <div id="effects"></div>
 
 <main class="card">
-<header class="header-img">
-<h2>Março Feminino 🖤</h2>
-</header>
+    <header class="header-img">
+        <h2>Março Feminino 🖤</h2>
+    </header>
 
-<section class="content">
-<p style="color:#666;font-size:0.9rem;">
-Homenagem à força de todas as mulheres.
-</p>
+    <section class="content">
+        <p style="color:#666; font-size:0.9rem; margin-top: 0;">
+            Homenagem à força de todas as mulheres.
+        </p>
 
-<div class="quote-box">
-"Hoje celebramos não apenas mulheres, mas histórias de força, superação e amor."
-</div>
+        <div class="quote-box">
+            "Hoje celebramos não apenas mulheres, mas histórias de força, superação e amor."
+        </div>
 
-<div class="btn-group">
-<button class="btn-celebrate" id="btnCelebrate">
-Comemorar! 🎉
-</button>
+        <div class="btn-group">
+            <button class="btn-celebrate" id="btnCelebrate">Comemorar! 🎉</button>
+            <button class="btn-music" id="btnPlayMusic">Assistir no YouTube ▶</button>
+        </div>
 
-<button class="btn-music" id="btnPlayMusic">
-Abrir no YouTube ▶
-</button>
-</div>
-
-<div class="music-player">
-<iframe 
-    width="100%" 
-    height="220" 
-    src="https://www.youtube.com/embed/yg-OBK5Aj5w?autoplay=1"
-    frameborder="0" 
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-</iframe>
-</div>
-
-</section>
+        <div class="music-player">
+            <!-- Adicionado mute=1 para permitir o autoplay inicial no navegador -->
+            <iframe 
+                width="100%" 
+                height="200" 
+                src="https://www.youtube.com"
+                frameborder="0" 
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
 </main>
 
 <script>
-const btn = document.getElementById('btnCelebrate');
-const btnMusic = document.getElementById('btnPlayMusic');
+    const btn = document.getElementById('btnCelebrate');
+    const btnMusic = document.getElementById('btnPlayMusic');
+    const effects = document.getElementById("effects");
 
-btn.addEventListener('click', () => {
-    if (window.confetti) {
-        confetti({
-            particleCount: 250,
-            spread: 120,
-            origin: { y: 0.6 },
-            zIndex: 9999
-        });
+    // Lógica do Confetti
+    btn.addEventListener('click', () => {
+        if (typeof confetti === 'function') {
+            confetti({
+                particleCount: 200,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#bb0c78', '#fd79a8', '#ffffff']
+            });
+        }
+    });
+
+    // Link externo YouTube
+    btnMusic.addEventListener('click', () => {
+        window.open("https://www.youtube.com/watch?v=yg-OBK5Aj5w", "_blank");
+    });
+
+    // Efeito de ícones flutuantes
+    const icons = ["🌸","💖","✨","👑","🌷"];
+
+    function createFloating() {
+        const el = document.createElement("div");
+        el.className = "floating";
+        el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = (5 + Math.random() * 5) + "s";
+        el.style.fontSize = (18 + Math.random() * 20) + "px";
+        
+        effects.appendChild(el);
+
+        setTimeout(() => {
+            el.remove();
+        }, 10000);
     }
-});
 
-btnMusic.addEventListener('click', () => {
-    window.open("https://www.youtube.com/watch?v=yg-OBK5Aj5w", "_blank");
-});
-
-const effects = document.getElementById("effects");
-const icons = ["🌸","💖","✨","👑","🌷"];
-
-function createFloating() {
-    const el = document.createElement("div");
-    el.className = "floating";
-    el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-    el.style.left = Math.random() * 100 + "vw";
-    el.style.animationDuration = (5 + Math.random() * 5) + "s";
-    el.style.fontSize = (18 + Math.random() * 20) + "px";
-    effects.appendChild(el);
-
-    setTimeout(() => {
-        el.remove();
-    }, 10000);
-}
-
-setInterval(createFloating, 500);
+    // Inicia a chuva de ícones
+    setInterval(createFloating, 600);
 </script>
 
 </body>
